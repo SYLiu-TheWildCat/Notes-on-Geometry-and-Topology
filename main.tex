@@ -1,0 +1,58 @@
+\documentclass[12pt]{book}
+\usepackage{fontspec}
+\setmainfont{Comic Sans MS}
+\usepackage{amsthm,amssymb,amsmath,mathtools}
+\usepackage{geometry}
+\geometry{
+a4paper,
+left = 1cm,
+right = 1cm,
+top = 2cm,
+bottom = 2cm,
+}
+\usepackage{hyperref}%超链接
+\hypersetup{colorlinks, linkcolor={violet}, citecolor={violet}} 
+\usepackage{mathrsfs}%数学花体字
+\usepackage{titlesec}
+\titleformat{\section}[block]
+{\normalfont\fillast}
+{\scshape section \thesection}
+{1ex minus .1ex}
+{\small}
+\titlespacing{\section}
+{3pc}{*3}{*2}[3pc]
+\usepackage{xcolor}
+\newcounter{acounter}[chapter]
+\numberwithin{acounter}{chapter}
+\usepackage{thmtools}
+\colorlet{theoremnamecolor}{orange!80!black}
+\colorlet{theoremnumbercolor}{orange!80!black}
+\declaretheoremstyle[
+  spaceabove = 7mm,
+  spacebelow = 7mm,
+  headfont = \color{theoremnamecolor}\normalfont\bfseries,
+  notefont = \color{theoremnamecolor}\normalfont\mdseries,
+  notebraces = {(}{)},
+  headformat = \NAME{} \textcolor{theoremnumbercolor}{\NUMBER}\NOTE,
+  headpunct = {},
+  bodyfont = \normalfont
+]{plain}
+
+{\theoremstyle{plain} 
+\newtheorem{thr}[acounter]{Theorem}%定理
+\newtheorem{dfn}[acounter]{Definition}%定义
+\newtheorem{prp}[acounter]{Proposition}%命题
+}
+
+\title{Notes on Geometry and Topology}
+\author{The Wild Cat}
+\date{April 2020}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\include{injective_radius}
+\end{document}
