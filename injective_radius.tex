@@ -3,3 +3,100 @@ In this article we are going to introduce the concept of "injective radius", whi
 \begin{thr}\label{injective-radius-on-compact-manifolds}
     Let $(M^n ,g)$ be a compact Riemannian manifold of dimension $n$, then the injective radius $i(M)>0$. In other words, there exists a positive constant $\delta >0$ such that $\exp_p\colon\mathbb{B}^n (\delta )\to M$ is always an embedding for all $p\in M$.
 \end{thr}
+We will introduce several concepts and prove some results in order to achieve this, and finally give a prove of this. Throughout the whole chapter, we write $(M^n ,g)$ for a given complete Riemannian manifold(not necessarily compact), and $\nabla $ the Levi-Civita connection with respect to $g$. We write $\langle\cdot ,\cdot\rangle $ for the standard inner product on tangent vectors(just another notation of $g$) and on vector fields(as a smooth bilinear function with values on vector fields), and $\Vert\cdot\Vert $ for the norm induced by $\langle\cdot ,\cdot\rangle $.
+\section{Jacobi Fields}
+The discussion begins with the vairation field for geodesics. Recall that a geodesic $\gamma\colon [a,b]\to M$ is a smooth curve such that $\nabla_{\dot{\gamma } (t)}\dot{\gamma } (t)=0$ for all $t\in [a,b]$. We say $\gamma $ is \tf{normal} if $\Vert\dot{\gamma } (t)\Vert\equiv 1$. Observe that for geodesics, we have $\Vert\dot{\gamma }\Vert $ is independent of $t$, hence the length $L(\gamma ):=\displaystyle\int_a^b\Vert\dot{\gamma }\Vert\diff t=(a-b)\Vert\dot{\gamma } (a)\Vert $. Fix $p\in M$, since a geodesic $\gamma\colon [0,L]\to M$ is determined by the differential equation
+\[
+\nabla_{\dot{\gamma }}\dot{\gamma } =0,
+\]
+by the standard theory of existence and uniqueness of differential equations\footnote{See for example, \cite{Lefschetz1985}.}, we know that the solutions to the above second-order differential equation with initial value $\dot{\gamma } (0)=v\in T_p M$ exists and is unique on $[0,\varepsilon ]$ for some $\varepsilon >0$. The differentiable dependence of solutions to the initial value gives that the assignment $T_p M\times [0,\varepsilon ]\to M$ given by $(u,t)\mapsto\gamma_u (t)$ is a smooth function both as a function on $T_p M$ and on $[0,\varepsilon ]$. Now for any $u\in\mathbb{B}^n (\varepsilon )\subseteq T_p M$, we can assign to each $u$ a point $\gamma_u (1)\in M$, and we write $\exp_p\colon\mathbb{B}^n (\varepsilon )\to M$ by $\exp_p u=\gamma_u (1)$. This is called the \tf{exponential map}. By calculating the differential of $\exp_p $ at $0_p $, we have
+\[
+(\diff\exp_p )_0 \xi =\left.\frac{\diff }{\diff s}\right\vert_{s=0}\gamma_{\xi } (s)=\xi,
+\]
+here we identify $\xi\in T_0T_p M$ with $\xi \in T_p M$ in the obvious way. Therefore $(\diff\exp_p )_0 =\id $ and hence there is an open neighbourhood $U$ of $0_p $ in $\mathbb{B}^n (\varepsilon )$ such that $\exp_p $ is a diffeomorphism from $U$ to $\exp_p (U)$. For convenience and a little abuse of notations, we just write $U=\mathbb{B}^n (0_p ,\varepsilon )$. With the Riemannian metric on $T_p M$, we can pick an orthonormal basis $\{e_i\}_{i=1}^n $ on $T_p M$.
+\begin{dfn}
+A \tf{normal coordinate system} on $\mathbb{B}^n (p,\varepsilon )\subseteq M$ is a chart $(U,\varphi )$ on $M$ such that for each $q\in U$, $\varphi (q)=(x^1 (q) ,\dotsb ,x^n (q))\in\mathbb{B}^n (0_p ,\varepsilon )$ with the pair $(x^1 (q),\dotsb, x^n (q))$ satisfying $q=\exp_p (\displaystyle\sum_{i=1}^n x^i (q)e_i )$.
+\end{dfn}
+Our aim is to investigate how large the neighbourhood $\mathbb{B}^n (0_p ,\varepsilon )$ can be. In order to do this, we need to verify two things: the first one is that $\exp_p $ should be injective, and the second one is that the differential of $\exp_p $ should be non-degenerate. To achieve the second, we need to compute the differential of $\exp_p $ at a non-origin point $q\in\mathbb{B}^n (0_p ,\varepsilon )$. This is given via variation methods. Given a curve $\gamma\colon [a,b]\to M$, a \tf{variation} is a map $\alpha\colon [a,b]\times (-\varepsilon ,\varepsilon )\to M$ such that \begin{enumerate*}\item $\alpha (t,0)=\gamma (0)$ and $\partial_t\alpha (t,0)=\dot{\gamma } (t)$;\item there exists a subdivision $\Delta =\{a=t_0 <t_1 <\dotsb <t_k =b\} $ such that $\alpha\vert_{[t_{i-1} ,t_i ]\times (-\varepsilon ,\varepsilon )} $ is smooth.\end{enumerate*} The vector field $X=\frac{\partial\alpha }{\partial s} (t,0)$ is called the \tf{variation field} of $\gamma $. Then we could compute $(\diff\exp_p )_u $ via variations.
+\begin{prp}
+There exists a variation $\alpha $ such that $\alpha (t,s)$ are geodesics for any $s\in (-\varepsilon ,\varepsilon )$.
+\end{prp}
+\begin{proof}
+Just pick a smooth curve $\{u_s\}_{-\varepsilon <s<\varepsilon } $ on $\mathbb{B}^n (0_p ,\varepsilon )$ such that $u_0 =u$ and construct the variation $\alpha $ as
+\[
+\alpha (t,s)=\exp_p tu_s,
+\]
+then it is easy to verify that $\alpha $ satisfies all the properties we want.
+\end{proof}
+Let $X=\partial_s\alpha $, then $X$ is a piecewise smooth vector field along $\gamma $ such that $X$ instructs the direction of movement of the geodesic when $u$ varies at a given direction. Thus in order to compute $(\diff\exp_p )_u $, we just set
+\[
+\alpha (t,s)=\exp_p t(u+s\xi )
+\]
+for given $\xi\in T_uT_p M\cong T_p M$, where we identify the tangent space of $T_p M$ with $T_p M$. Then we have
+\[
+X(t)=\frac{\partial\alpha }{\partial s} (t,0)=\left.\frac{\diff }{\diff s}\right\vert_{s=0}\exp_p t(u+s\xi )=t(\diff\exp_p )_{tu}\xi,
+\]
+hence once we could determine $X(t)$, we would determine $(\diff\exp_p )_u $ as $X(1)$. Taking the first-order derivative of $X(t)$ yields
+\[
+\nabla_t X(0)=\nabla_{\partial_t\alpha } X(0)=\nabla_{\partial_t\alpha }\partial_s\alpha (0,0)=\nabla_{\partial_s\alpha }\vert_{s=0}\partial_t\alpha\vert_{t=0} =\nabla_{\partial_s\alpha }\vert_{s=0}(u+s\xi )=\xi ,
+\]
+and the second-order derivative of $X(t)$ is given by
+\[
+\nabla_t\nabla_t X(t)=\nabla_t\nabla_t (\partial_s\alpha )=\nabla_t\nabla_s (\partial_t\alpha )=\nabla_s\nabla_t\dot{\gamma }_u +R(\partial_t ,\partial_s )\dot{\gamma } =R(\partial_t ,\partial_s )\dot{\gamma }
+\]
+since $\gamma $ is a geodesic. Hence we have the following second-order differential equation:
+\begin{equation}
+    \label{The-Jacobi-field-equation}\left\{\begin{array}{l}
+    \nabla_t\nabla_t X(t)-R(\partial_t ,\partial_s )\dot{\gamma } =0,\\
+    X(0)=u,\ \nabla_t X(0)=\xi
+    \end{array}\right.
+\end{equation}
+\begin{dfn}
+We call a vector field along a geodesic $\gamma $ that satisfies equation \eqref{The-Jacobi-field-equation} a \tf{Jacobi field}.
+\end{dfn}
+Therefore we know that the differential $\diff\exp_p (u)$ is degenerate if and only if there exists a Jacobi field $X$ such that $X(0)=X(1)=0$. We apply again the existence and uniqueness of ordinary differential equations to conclude that
+\begin{prp}
+A Jacobi field $X$ is uniquely determined by a pair $(u,\xi )$ and hence the space $\mathcal{J} (\gamma )$ of all Jacobi fields along $\gamma $ has dimension $2n$.
+\end{prp}
+In particular, when we fix the initial condition $X(0)=0$, the space of all Jacobi fields such that $X(0)=0$ forms a vector space over $\mathbb{R} $ of dimension $n$.
+\begin{dfn}
+We call the point $u\in\mathbb{B}^n (0_p ;\varepsilon )$ a \tf{conjugate point} if there exists a Jacobi field $X$ along $\gamma_u $ such that $X(0)=X(1)=0$.
+\end{dfn}
+We would like to study the behaviour of the conjugate point.
+\section{Minimal Geodesics} The conjugate point is closely related to the non-minimality of geodesics. Firstly, observe that
+\begin{prp}
+For any $p\in M$, there exists a positive number $\delta_p >0$ such that there are no conjugate points to $p$ in the ball $\mathbb{B}^n (p,\delta_p )\subseteq M$.
+\end{prp}
+\begin{proof}
+In $T_p M$, we know that there is an open neighbourhood $U_p $ of $0_p $ such that $\exp_p $ is a diffeomorphism in $U_p $. From the above argument we know that $\diff\exp_p (u)$ is non-degenerate if and only if any Jacobi field $X$ such that $X(0)=X(1)=0$ must be identically zero, hence any point in $U_p $ is not conjugate to $p$.
+\end{proof}
+Given two points $p,q$ in $M$, we know by completeness of $M$ there exists a unique \tf{minimal geodesic} $\gamma_{pq} $ connecting $p$ and $q$, that is, a geodesic $\gamma\colon [0,T]\to M$ satisfies $\gamma (0)=p$, $\gamma (T)=q$, and $L(\gamma )=d(p,q)$. Fix $p$, then for $q$ sufficiently close to $p$, the minimal geodesic connecting $p$ to $q$ is unique and is just given by the exponential map $\exp_p $. Again we wonder the maximal radius $r$ for which inside the ball $\mathbb{B}^n (0_p ,r)$ all points $q$ admits a unique minimal geodesic to $p$. This is in fact related to the conjugate point.
+\begin{dfn}
+We say a point $q$ is a \tf{first conjugate point} to $p$ if $q$ is a conjugate point to $p$ and if we set $q=\exp_p u$, for all $0\leq t<1$, $\exp_p tu$ is not a conjugate point to $p$.
+\end{dfn}
+The first conjugate point can determine an upper bound for the geodesic $\exp_p tu$ to be minimal. In fact, we have
+\begin{thr}
+    \label{upper-bound-for-minimality} Assume $q=\exp_p u$ is a first conjugate point to $p$, then for all $t>1$, $\gamma\colon [0,t]\to M$ is not minimal.
+\end{thr}
+Recall that for a complete Riemannian manifold, the map $\exp_p $ is always globally defined. In order to prove theorem \ref{upper-bound-for-minimality}, we need to compute the second-order derivative of the length functional $L(\gamma )$ at some direction $X$ to see if $L(\gamma )$ achieves its local minimum. However, $L(\gamma )$ is not differentiable on the space $P(M)$ of all piecewise smooth curves on $M$, hence we consider the \tf{energy functional}
+\[
+E(\gamma )=\frac{1}{2}\int_a^b\Vert\dot{\gamma }\Vert^2\diff t
+\]
+for $\gamma\colon [a,b]\to M$ piecewise smooth. By Hölder's inequality, we have
+\[
+L(\gamma )=\int_a^b\Vert\dot{\gamma }\Vert\diff t\leq\sqrt{2(b-a) E(\gamma )}.
+\]
+For some variation $\alpha $ of a curve $\gamma\colon [a,b]\to M$, we have
+\begin{align*}
+    \diff E_{\gamma } (X)&=\frac{1}{2}\left.\frac{\diff }{\diff s}\right\vert_{s=0} E(\alpha_s )=\int_a^b\langle\nabla_X\dot{\gamma },\dot{\gamma }\rangle\diff t=\int_a^b\left(\dot{\gamma }\langle X,\dot{\gamma }\rangle -\langle X,\nabla_{\dot{\gamma } }\dot{\gamma }\rangle\right)\diff t\\
+    &=\sum_{i=1}^k\int_{t_{i-1} }^{t_i }\frac{\diff }{\diff t}\langle X(t),\dot{\gamma } (t)\rangle\diff t-\int_a^b\langle X,\nabla_{\dot{\gamma } }\dot{\gamma }\rangle\diff t\\
+    &=\sum_{i=1}^k (\langle X(t_i ),\dot{\gamma } (t_i-0)\rangle -\langle X(t_{i-1} ) ,\dot{\gamma } (t_{i-1} +0)\rangle )-\int_a^b\langle X(t),\nabla_{\dot{\gamma } }\dot{\gamma } (t)\rangle\diff t,
+\end{align*}
+and we could do the same for $L(\gamma )$ to obtain that
+\[
+\diff L_{\gamma } (X)=-\int_a^b\left\langle\nabla_{\partial_t }\left(\frac{\dot{\gamma } (t)}{\Vert\dot{\gamma } (t)\Vert }\right) ,X(t)\right\rangle\diff t+\sum_{i=1}^k\left\langle X(t_i ),\frac{\dot{\gamma } (t_i -0)}{\Vert\dot{\gamma } (t_i -0)\Vert } -\frac{\dot{\gamma } (t_{i-1} +0)}{\Vert\dot{\gamma } (t_{i-1} +0)\Vert }\right\rangle .
+\]
+It follows that critical points of $E$ coincide with critical points of $L$ with constant speed. What we want is a second-order variation, so we take a further derivative to see that
+\begin{align*}
+    \diff^2E_{\gamma } (X,Y)&=-\frac{\diff }{\diff r}\int_a^b\langle X(t),\nabla_{\dot{\gamma } }\dot{\gamma }\rangle\diff t
+\end{align*}

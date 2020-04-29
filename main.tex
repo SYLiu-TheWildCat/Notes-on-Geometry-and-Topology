@@ -1,7 +1,10 @@
 \documentclass[12pt]{book}
-\usepackage{fontspec}
+\usepackage[no-math]{fontspec}
+\usepackage{unicode-math}
 \setmainfont{Comic Sans MS}
-\usepackage{amsthm,amssymb,amsmath,mathtools}
+\setmathfont{TeX Gyre Bonum Math}
+% \usepackage{comicsans}
+\usepackage{amsthm,amsmath}
 \usepackage{geometry}
 \geometry{
 a4paper,
@@ -14,45 +17,73 @@ bottom = 2cm,
 \hypersetup{colorlinks, linkcolor={violet}, citecolor={violet}} 
 \usepackage{mathrsfs}%数学花体字
 \usepackage{titlesec}
-\titleformat{\section}[block]
-{\normalfont\fillast}
-{\scshape section \thesection}
-{1ex minus .1ex}
-{\small}
-\titlespacing{\section}
-{3pc}{*3}{*2}[3pc]
+\renewcommand{\thesection}{\thechapter\alph{section})}
+\titleformat{\section}[runin]{\normalfont\bfseries}{\indent\thesection\ }{0pt}{}
 \usepackage{xcolor}
 \newcounter{acounter}[chapter]
 \numberwithin{acounter}{chapter}
-\usepackage{thmtools}
-\colorlet{theoremnamecolor}{orange!80!black}
-\colorlet{theoremnumbercolor}{orange!80!black}
-\declaretheoremstyle[
-  spaceabove = 7mm,
-  spacebelow = 7mm,
-  headfont = \color{theoremnamecolor}\normalfont\bfseries,
-  notefont = \color{theoremnamecolor}\normalfont\mdseries,
-  notebraces = {(}{)},
-  headformat = \NAME{} \textcolor{theoremnumbercolor}{\NUMBER}\NOTE,
-  headpunct = {},
-  bodyfont = \normalfont
-]{plain}
+\newtheoremstyle{them}% name
+{4pt}% Space above1
+{4pt}% Space below1
+{\normalfont }% Body font
+{}% Indent amount2
+{\color{orange}\bfseries }% Theorem head font
+{.}% Punctuation after theorem head
+{.5em}% Space after theorem head3
+{}% Theorem head spec (can be left empty, meaning ‘normal’)
+\newtheoremstyle{defn}% name
+{4pt}% Space above1
+{4pt}% Space below1
+{\normalfont }% Body font
+{}% Indent amount2
+{\color{green!30!black}\bfseries }% Theorem head font
+{.}% Punctuation after theorem head
+{.5em}% Space after theorem head3
+{}% Theorem head spec (can be left empty, meaning ‘normal’)
 
-{\theoremstyle{plain} 
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+\pushQED{\qed}%
+\normalfont \topsep6\p@\@plus6\p@\relax
+\trivlist
+\item\relax
+{\color{red!80!black}\normalfont\bfseries
+#1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{%
+\popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+{\theoremstyle{them}
+\swapnumbers
 \newtheorem{thr}[acounter]{Theorem}%定理
-\newtheorem{dfn}[acounter]{Definition}%定义
 \newtheorem{prp}[acounter]{Proposition}%命题
 }
+{\theoremstyle{defn}
+\swapnumbers
+\newtheorem{dfn}[acounter]{Definition}%定义
+}
+
+\newcommand{\tf}[1]{{\color{blue!80!black}\textbf{#1}}}
+\newcommand{\diff}{\mathrm{d}}
+
+\usepackage{dsfont}
+\DeclareMathOperator{\id}{\mathds{1}}
+
+\usepackage[inline]{enumitem}
 
 \title{Notes on Geometry and Topology}
 \author{The Wild Cat}
 \date{April 2020}
 
 \begin{document}
-
+\frontmatter
 \maketitle
-
 \tableofcontents
-
+\mainmatter
 \include{injective_radius}
+\backmatter
+\nocite{Sakai1996}
+\bibliographystyle{alpha}
+\bibliography{reference}
 \end{document}
